@@ -1,28 +1,41 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  SafeAreaView,
-  useColorScheme,
-} from 'react-native';
+import {StatusBar, StyleSheet, SafeAreaView, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import SignIn from './src/frames/SignIn';
 import GetStarted from './src/frames/GetStarted';
+import SignUp from './src/frames/SignUp';
+import ForgotPassword from './src/frames/ForgotPassword';
+import ChangePassword from './src/frames/ChangePassword';
+const Stack = createNativeStackNavigator();
+const Theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#0E0B1F',
+  },
+};
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
-  };
   return (
-    <SafeAreaView style={styles.background}>
+    <NavigationContainer theme={Theme}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        translucent
+        barStyle="light-content"
+        backgroundColor="transparent"
       />
-      <GetStarted style={{flex: 1}} />
-    </SafeAreaView>
+      <Stack.Navigator
+        initialRouteName="ChangePassword"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="GetStarted" component={GetStarted} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
