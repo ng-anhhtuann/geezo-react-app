@@ -14,11 +14,11 @@ import {
 } from 'react-native';
 const {width, height} = Dimensions.get('window');
 
-const SignIn = ({navigation}) => {
+const SignUp = ({navigation}) => {
   const [getSight, setSight] = useState(true);
   return (
     <ImageBackground
-      source={require('../assets/signinbackground.png')}
+      source={require('../assets/signupbackground.png')}
       style={{flex: 1, height: height, width: width}}
       resizeMode="stretch">
       <View
@@ -26,18 +26,34 @@ const SignIn = ({navigation}) => {
           flex: 1 / 3,
           justifyContent: 'flex-end',
         }}>
-        <Text style={styles.signInText}>SIGN IN</Text>
+        <Text style={styles.signInText}>SIGN UP</Text>
       </View>
       <View
         style={{
-          flex: 1 / 3,
+          flex: 2 / 3,
+          marginTop: height * 0.05,
         }}>
-        {/*Email vs password container*/}
+        {/*Email vs name vs password container*/}
         <View
           style={{
             height: '100%',
             width: '100%',
           }}>
+          {/*Name*/}
+          <View style={styles.propContainer}>
+            <View style={styles.iconImage}>
+              <Image
+                source={require('../assets/nameicon.png')}
+                resizeMode="contain"
+              />
+            </View>
+            <TextInput
+              style={styles.textInput}
+              fontSize={height * 0.02}
+              placeholder="Name"
+              placeholderTextColor="#9f9f9f"
+            />
+          </View>
           {/*Email*/}
           <View style={styles.emailContainer}>
             <View style={styles.iconImage}>
@@ -54,7 +70,7 @@ const SignIn = ({navigation}) => {
             />
           </View>
           {/*Password*/}
-          <View style={styles.passwordContainer}>
+          <View style={styles.propContainer}>
             <View style={styles.iconImage}>
               <Image
                 source={require('../assets/lockicon.png')}
@@ -82,100 +98,38 @@ const SignIn = ({navigation}) => {
               />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('ForgotPassword');
-            }}
-            style={{
-              alignItems: 'flex-end',
-              marginRight: width * 0.1,
-              marginTop: height * 0.045,
-              marginLeft: width * 0.55,
-            }}>
-            <Text style={{fontSize: height * 0.02, color: 'white'}}>
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={event => {}}>
               <Text style={{color: 'black', fontSize: height * 0.02}}>
-                SIGN IN
+                SIGN UP
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: height * 0.03,
+                marginLeft: width * 0.4,
+                marginRight: width * 0.4,
+              }}
+              onPress={event => {
+                navigation.goBack(1);
+              }}>
+              <Text style={{color: 'white', fontSize: height * 0.02}}>
+                GO BACK
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </View>
-      <View
-        style={{
-          flex: 1 / 3,
-          marginLeft: width * 0.1,
-          marginRight: width * 0.1,
-        }}>
-        <View style={styles.connectViewSpace}>
-          <View style={styles.line} />
-          <Text style={styles.textBetweenLines}>Or connect with</Text>
-          <View style={styles.line} />
-        </View>
-        <View style={styles.connectView}>
-          <TouchableOpacity onPress={() => {}}>
-            <Image
-              source={require('../assets/facebookicon.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={{padding: width * 0.03}} onPress={() => {}}>
-            <Image
-              source={require('../assets/googleicon.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
-            <Image
-              source={require('../assets/twittericon.png')}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.connectView}>
-          <Text style={{color: 'white'}}>Don't have an account? </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('SignUp');
-            }}>
-            <Text style={{color: '#CBFB5E'}}>Sign Up</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
   );
 };
 const styles = StyleSheet.create({
-  connectViewSpace: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  connectView: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textBetweenLines: {
-    color: '#9f9f9f',
-    marginRight: width * 0.05,
-    marginLeft: width * 0.05,
-    fontSize: height * 0.015,
-  },
-  line: {
-    flex: 1,
-    borderBottomWidth: 1.5,
-    borderBottomColor: '#9f9f9f',
-  },
   buttonContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
-    paddingBottom: height * 0.015,
+    justifyContent: 'center',
+    paddingBottom: height * 0.1,
   },
   button: {
     borderRadius: height * 0.015,
@@ -197,16 +151,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginLeft: width * 0.1,
     marginRight: width * 0.1,
+    marginTop: height * 0.04,
+    marginBottom: height * 0.04,
     height: height * 0.05,
     alignItems: 'center',
     borderBottomColor: '#9f9f9f',
     borderBottomWidth: 1,
   },
-  passwordContainer: {
+  propContainer: {
     flexDirection: 'row',
     marginLeft: width * 0.1,
     marginRight: width * 0.1,
-    marginTop: height * 0.04,
     height: height * 0.05,
     alignItems: 'center',
     borderBottomColor: '#9f9f9f',
@@ -226,4 +181,4 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
-export default SignIn;
+export default SignUp;

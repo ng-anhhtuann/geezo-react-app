@@ -2,10 +2,14 @@
 import React from 'react';
 import {StatusBar, StyleSheet, SafeAreaView, View} from 'react-native';
 
-import GetStarted from './src/frames/GetStarted';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import SignIn from './src/frames/SignIn';
+import GetStarted from './src/frames/GetStarted';
+import SignUp from './src/frames/SignUp';
+import ForgotPassword from './src/frames/ForgotPassword';
+import ChangePassword from './src/frames/ChangePassword';
 const Stack = createNativeStackNavigator();
 const Theme = {
   ...DefaultTheme,
@@ -17,11 +21,19 @@ const Theme = {
 const App = () => {
   return (
     <NavigationContainer theme={Theme}>
+      <StatusBar
+        translucent
+        barStyle="light-content"
+        backgroundColor="transparent"
+      />
       <Stack.Navigator
-        initialRouteName="GetStarted"
+        initialRouteName="ChangePassword"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="GetStarted" component={GetStarted} />
         <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
       </Stack.Navigator>
     </NavigationContainer>
   );
