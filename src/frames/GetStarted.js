@@ -10,10 +10,13 @@ import {
   Image,
   View,
 } from 'react-native';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import PictureSwitch from '../shared/PictureSwitch';
 const {width, height} = Dimensions.get('window');
-const GetStarted = () => {
+// var position = 0;
+// var img;
+const GetStarted = ({navigation}) => {
   const images = [
     {id: 1, img: require('../assets/scr1.png'), title: 'scr1'},
     {id: 2, img: require('../assets/scr2.png'), title: 'scr2'},
@@ -21,24 +24,20 @@ const GetStarted = () => {
     {id: 4, img: require('../assets/scr4.png'), title: 'scr4'},
   ];
   const [scrollWidth, setScrollWidth] = useState(0);
-  // const gap = width / images.length;
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.background}>
       <ScrollView style={{flex: 1.5}}>
         <ScrollView
           style={{height: height / 2, width}}
           horizontal={true}
           scrollEventThrottle={16}
           onScroll={event => {
-            // const x = event.nativeEvent.contentOffset.x;
-            // setScrollWidth(x - (x % gap));
-            // console.log(
-            //   Math.floor(width / Math.abs(event.nativeEvent.contentOffset.x)) +
-            //     ' ' +
-            //     width,
-            // );
-            setScrollWidth(Math.abs(event.nativeEvent.contentOffset.x));
+            setScrollWidth(
+              Math.floor(Math.abs(event.nativeEvent.contentOffset.x)),
+            );
             console.log(scrollWidth + ' ' + width);
+            // position = scrollWidth / width;
+            // img = images[position].img;
           }}
           showsHorizontalScrollIndicator={false}>
           {images.map(image => {
@@ -53,49 +52,39 @@ const GetStarted = () => {
           })}
         </ScrollView>
         <View style={{height: height / 2, flex: 1}}>
-          <View
-            style={{
-              flex: 2,
-              marginLeft: 20,
-              marginRight: 20,
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
+          <View style={styles.marginContainer}>
             {images.map((image, index, array) => {
               return (
                 <PictureSwitch
                   key={image.id}
-                  state={
-                    // images.length -
-                    //   width / Math.abs(index < 1 ? width : scrollWidth) >=
-                    // index
-                    scrollWidth > (index - 1 / 2) * width || index === 0
-                  }
+                  state={scrollWidth >= (index - 1 / 2) * width || index === 0}
                 />
               );
             })}
           </View>
-          <View
-            style={{
-              flex: 7,
-              marginTop: 20,
-              marginLeft: 20,
-              marginRight: 20,
-            }}>
-            <Text style={{color: '#CBFB5E', fontSize: 12}}>APP UI KIT</Text>
-            <Text style={{color: '#FFFFFF', fontSize: 30}}>
+          <View style={styles.marginText}>
+            <Text style={{color: '#CBFB5E', fontSize: height * 0.015}}>
+              APP UI KIT
+            </Text>
+            <Text style={{color: '#FFFFFF', fontSize: height * 0.037}}>
               WELCOME TO GEEZ APP
             </Text>
             <Text
               style={{
                 color: '#FFFFFF',
-                fontSize: 16,
+                fontSize: height * 0.018,
               }}>
               Make your design workflow easier and save your time.
             </Text>
           </View>
-          <TouchableOpacity style={styles.button} onPress={event => {}}>
-            <Text style={{color: 'black', fontSize: 15}}>GET STARTED</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={event => {
+              navigation.navigate('SignIn');
+            }}>
+            <Text style={{color: 'black', fontSize: height * 0.02}}>
+              GET STARTED
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -104,15 +93,31 @@ const GetStarted = () => {
 };
 
 const styles = StyleSheet.create({
+  background: {
+    // backgroundColor: '#0E0B1F',
+    flex: 1,
+  },
   button: {
     flex: 1.5,
-    borderRadius: 15,
+    borderRadius: height * 0.015,
     alignItems: 'center',
-    marginBottom: 100,
-    marginLeft: 20,
-    marginRight: 20,
+    marginBottom: height * 0.12,
+    marginLeft: width * 0.1,
+    marginRight: width * 0.1,
     justifyContent: 'center',
     backgroundColor: '#CBFB5E',
+  },
+  marginContainer: {
+    flex: 2,
+    marginLeft: width * 0.1,
+    marginRight: width * 0.1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  marginText: {
+    flex: 7,
+    marginLeft: width * 0.1,
+    marginRight: width * 0.1,
   },
 });
 

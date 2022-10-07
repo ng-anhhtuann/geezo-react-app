@@ -1,28 +1,29 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  SafeAreaView,
-  useColorScheme,
-} from 'react-native';
+import {StatusBar, StyleSheet, SafeAreaView, View} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import GetStarted from './src/frames/GetStarted';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SignIn from './src/frames/SignIn';
+const Stack = createNativeStackNavigator();
+const Theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#0E0B1F',
+  },
+};
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
-  };
   return (
-    <SafeAreaView style={styles.background}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <GetStarted style={{flex: 1}} />
-    </SafeAreaView>
+    <NavigationContainer theme={Theme}>
+      <Stack.Navigator
+        initialRouteName="GetStarted"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="GetStarted" component={GetStarted} />
+        <Stack.Screen name="SignIn" component={SignIn} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
