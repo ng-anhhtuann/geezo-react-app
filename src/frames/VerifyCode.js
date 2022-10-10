@@ -62,10 +62,12 @@ const VerifyCode = ({navigation}) => {
             value={value}
             onChangeText={setValue}
             cellCount={CELL_COUNT}
+            // rootStyle={styles.codeFieldRoot}
             keyboardType="number-pad"
             textContentType="oneTimeCode"
             renderCell={({index, symbol, isFocused}) => (
               <View
+                // Make sure that you pass onLayout={getCellOnLayoutHandler(index)} prop to root component of "Cell"
                 onLayout={getCellOnLayoutHandler(index)}
                 key={index}
                 style={[styles.cellRoot, isFocused && styles.focusCell]}>
@@ -151,6 +153,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#9f9f9f',
     borderBottomWidth: 1.2,
+  },
+  codeFieldRoot: {
+    marginTop: 20,
+    width: 280,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   cellRoot: {
     width: width * 0.1,
