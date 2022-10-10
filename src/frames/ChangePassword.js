@@ -2,7 +2,6 @@
 import {React, useState} from 'react';
 import {
   Dimensions,
-  StatusBar,
   SafeAreaView,
   TouchableOpacity,
   Text,
@@ -17,6 +16,8 @@ const {width, height} = Dimensions.get('window');
 const ChangePassword = ({navigation}) => {
   const [getSight, setSight] = useState(true);
   const [getSight2, setSight2] = useState(true);
+  const [getPwd, setPwd] = useState('');
+  const [getPwd2, setPwd2] = useState('');
   return (
     <SafeAreaView style={styles.parent}>
       <TouchableOpacity
@@ -50,6 +51,7 @@ const ChangePassword = ({navigation}) => {
             fontSize={height * 0.015}
             placeholder="Password"
             placeholderTextColor="#9f9f9f"
+            onChangeText={text => setPwd(text)}
           />
           <TouchableOpacity
             style={{
@@ -57,7 +59,9 @@ const ChangePassword = ({navigation}) => {
               justifyContent: 'center',
             }}
             onPress={() => {
-              setSight(!getSight);
+              if (getPwd.length > 0) {
+                setSight(!getSight);
+              }
             }}>
             <Image
               source={require('../assets/eyeicon.png')}
@@ -78,6 +82,7 @@ const ChangePassword = ({navigation}) => {
             fontSize={height * 0.015}
             placeholder="Confirm Password"
             placeholderTextColor="#9f9f9f"
+            onChangeText={text => setPwd2(text)}
           />
           <TouchableOpacity
             style={{
@@ -85,7 +90,9 @@ const ChangePassword = ({navigation}) => {
               justifyContent: 'center',
             }}
             onPress={() => {
-              setSight2(!getSight2);
+              if (getPwd2.length > 0) {
+                setSight2(!getSight2);
+              }
             }}>
             <Image
               source={require('../assets/eyeicon.png')}
@@ -95,7 +102,15 @@ const ChangePassword = ({navigation}) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={event => {}}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={event => {
+            if (getPwd === getPwd2) {
+              navigation.navigate('SignIn');
+            } else {
+              /* Insert warning bottom*/
+            }
+          }}>
           <Text style={{color: 'black', fontSize: height * 0.02}}>
             CHANGE PASSWORD
           </Text>
