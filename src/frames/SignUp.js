@@ -16,6 +16,8 @@ const {width, height} = Dimensions.get('window');
 
 const SignUp = ({navigation}) => {
   const [getSight, setSight] = useState(true);
+  const [getPwd, setPwd] = useState('');
+
   return (
     <ImageBackground
       source={require('../assets/signupbackground.png')}
@@ -83,6 +85,7 @@ const SignUp = ({navigation}) => {
               fontSize={height * 0.02}
               placeholder="Password"
               placeholderTextColor="#9f9f9f"
+              onChangeText={text => setPwd(text)}
             />
             <TouchableOpacity
               style={{
@@ -90,7 +93,9 @@ const SignUp = ({navigation}) => {
                 justifyContent: 'center',
               }}
               onPress={() => {
-                setSight(!getSight);
+                if (getPwd.length > 0) {
+                  setSight(!getSight);
+                }
               }}>
               <Image
                 source={require('../assets/eyeicon.png')}
@@ -99,7 +104,13 @@ const SignUp = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={event => {}}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={event => {
+                /*Logic to add: check if email is true-form ( navigate to VerifyPhone) then return warning 
+                bottom*/
+                navigation.navigate('VerifyPhone');
+              }}>
               <Text style={{color: 'black', fontSize: height * 0.02}}>
                 SIGN UP
               </Text>

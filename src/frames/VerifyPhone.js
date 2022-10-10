@@ -2,6 +2,7 @@
 import React from 'react';
 import {
   Dimensions,
+  StatusBar,
   SafeAreaView,
   TouchableOpacity,
   Text,
@@ -13,7 +14,7 @@ import {
 
 const {width, height} = Dimensions.get('window');
 
-const ForgotPassword = ({navigation}) => {
+const VerifyPhone = ({navigation}) => {
   return (
     <SafeAreaView style={styles.parent}>
       <TouchableOpacity
@@ -23,28 +24,34 @@ const ForgotPassword = ({navigation}) => {
         style={styles.backButton}>
         <Image
           source={require('../assets/backicon.png')}
-          resizeMode={'contain'}
+          resizeMode="contain"
         />
       </TouchableOpacity>
       <View style={{flex: 4}}>
-        <Text style={{color: 'white', fontSize: height * 0.03}}>
-          Forgot Password?
+        <Text
+          style={{
+            color: 'white',
+            fontSize: height * 0.03,
+            paddingRight: width * 0.2,
+          }}>
+          To continue enter your phone number
         </Text>
-        <Text style={styles.longText}>
-          If you need help resetting your password, we can help by sending you a
-          link to reset it.
-        </Text>
-        <View style={styles.emailContainer}>
+        <View style={styles.phoneContainer}>
           <View style={styles.iconImage}>
             <Image
-              source={require('../assets/mailicon.png')}
+              source={require('../assets/phoneicon.png')}
               resizeMode="contain"
             />
           </View>
           <TextInput
             style={styles.textInput}
             fontSize={height * 0.02}
-            placeholder="Email"
+            placeholder="Phone"
+            keyboardType="number-pad"
+            maxLength={4}
+            type="number"
+            pattern="[0-9]*"
+            inputMode="numeric"
             placeholderTextColor="#9f9f9f"
           />
         </View>
@@ -53,11 +60,13 @@ const ForgotPassword = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={event => {
-            /*Logic to add: Send verification mail to phone number
-            then click in link sent -> back to navigate the ChangePassword
-            navigation.navigate('ChangePassword');*/
+            /*Logic to add: Send verification code to phone number
+            then init*/
+            navigation.navigate('VerifyCode');
           }}>
-          <Text style={{color: 'black', fontSize: height * 0.02}}>SEND</Text>
+          <Text style={{color: 'black', fontSize: height * 0.02}}>
+            CONTINUE
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '100%',
   },
-  emailContainer: {
+  phoneContainer: {
     flexDirection: 'row',
     marginTop: height * 0.125,
     height: height * 0.05,
@@ -113,4 +122,4 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.2,
   },
 });
-export default ForgotPassword;
+export default VerifyPhone;

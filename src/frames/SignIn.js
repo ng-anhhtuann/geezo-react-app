@@ -16,6 +16,8 @@ const {width, height} = Dimensions.get('window');
 
 const SignIn = ({navigation}) => {
   const [getSight, setSight] = useState(true);
+  const [getPwd, setPwd] = useState('');
+
   return (
     <ImageBackground
       source={require('../assets/signinbackground.png')}
@@ -30,7 +32,7 @@ const SignIn = ({navigation}) => {
       </View>
       <View
         style={{
-          flex: 1 / 3,
+          flex: 1.25 / 3,
         }}>
         {/*Email vs password container*/}
         <View
@@ -67,6 +69,7 @@ const SignIn = ({navigation}) => {
               fontSize={height * 0.02}
               placeholder="Password"
               placeholderTextColor="#9f9f9f"
+              onChangeText={text => setPwd(text)}
             />
             <TouchableOpacity
               style={{
@@ -74,7 +77,9 @@ const SignIn = ({navigation}) => {
                 justifyContent: 'center',
               }}
               onPress={() => {
-                setSight(!getSight);
+                if (getPwd.length > 0) {
+                  setSight(!getSight);
+                }
               }}>
               <Image
                 source={require('../assets/eyeicon.png')}
@@ -102,12 +107,27 @@ const SignIn = ({navigation}) => {
                 SIGN IN
               </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: height * 0.03,
+                marginLeft: width * 0.4,
+                marginRight: width * 0.4,
+              }}
+              onPress={event => {
+                navigation.goBack(1);
+              }}>
+              <Text style={{color: 'white', fontSize: height * 0.02}}>
+                GO BACK
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
       <View
         style={{
-          flex: 1 / 3,
+          flex: 0.75 / 3,
           marginLeft: width * 0.1,
           marginRight: width * 0.1,
         }}>
@@ -175,7 +195,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: height * 0.015,
+    marginBottom: height * 0.015,
   },
   button: {
     borderRadius: height * 0.015,

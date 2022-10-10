@@ -79,6 +79,7 @@ const GetStarted = ({navigation}) => {
           </View>
           <TouchableOpacity
             style={styles.button}
+            delayPressIn={50}
             onPress={event => {
               navigation.navigate('SignIn');
             }}>
