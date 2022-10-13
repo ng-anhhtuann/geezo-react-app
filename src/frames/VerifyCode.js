@@ -67,7 +67,6 @@ const VerifyCode = ({navigation}) => {
             textContentType="oneTimeCode"
             renderCell={({index, symbol, isFocused}) => (
               <View
-                // Make sure that you pass onLayout={getCellOnLayoutHandler(index)} prop to root component of "Cell"
                 onLayout={getCellOnLayoutHandler(index)}
                 key={index}
                 style={[styles.cellRoot, isFocused && styles.focusCell]}>
@@ -84,8 +83,9 @@ const VerifyCode = ({navigation}) => {
           style={styles.button}
           onPress={event => {
             /*Logic to add: Check if verify code is true then navigation to the
-            VerifyDone else return a text warning below*/
-            // navigation.navigate('VerifyDone');
+            VerifyDone else return a text warning below
+            then => */
+            navigation.navigate('VerifyDone');
           }}>
           <Text style={{color: 'black', fontSize: height * 0.02}}>
             CONTINUE
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
   },
   parent: {
     flex: 1,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
   },
   buttonContainer: {
     flex: 5,

@@ -14,9 +14,19 @@ const {width, height} = Dimensions.get('window');
 const ToVerify = ({navigation}) => {
   return (
     <SafeAreaView style={styles.parent}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('SignUp');
+        }}
+        style={styles.backButton}>
+        <Image
+          source={require('../assets/backicon.png')}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
       <View
         style={{
-          flex: 5,
+          flex: 4,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -26,7 +36,7 @@ const ToVerify = ({navigation}) => {
             fontSize: height * 0.03,
             textAlign: 'center',
           }}>
-          Successfully verified!
+          Almost done!
         </Text>
         <Text
           style={{
@@ -34,7 +44,7 @@ const ToVerify = ({navigation}) => {
             fontSize: height * 0.015,
             textAlign: 'center',
           }}>
-          Press button to go back to sign in screen.
+          Please verify your Phone.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -43,10 +53,10 @@ const ToVerify = ({navigation}) => {
           onPress={event => {
             /*Logic to add: Check if verify code is true then navigation to the
             VerifyDone else return a text warning below*/
-            navigation.navigate('SignIn');
+            navigation.navigate('VerifyPhone');
           }}>
           <Text style={{color: 'black', fontSize: height * 0.02}}>
-            BACK TO SIGN IN
+            CONTINUE
           </Text>
         </TouchableOpacity>
       </View>

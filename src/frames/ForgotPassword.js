@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import {React, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -10,10 +10,18 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
+import validateEmail from '../shared/MailRegex';
 
 const {width, height} = Dimensions.get('window');
 
 const ForgotPassword = ({navigation}) => {
+  // const showAlert = () => {
+  //   this.setState({
+  //     showAlert: true,
+  //   });
+  // };
+  const {mail, setMail} = useState('');
   return (
     <SafeAreaView style={styles.parent}>
       <TouchableOpacity
@@ -46,6 +54,9 @@ const ForgotPassword = ({navigation}) => {
             fontSize={height * 0.02}
             placeholder="Email"
             placeholderTextColor="#9f9f9f"
+            onTextChange={text => {
+              setMail(text);
+            }}
           />
         </View>
       </View>
@@ -53,9 +64,33 @@ const ForgotPassword = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={event => {
-            /*Logic to add: Send verification mail to phone number
-            then click in link sent -> back to navigate the ChangePassword
-            navigation.navigate('ChangePassword');*/
+            if (validateEmail(mail)) {
+              /*  + Check if email is existed in database */
+              /*     => send link allowance to change password */
+              navigation.navigate('ChangePassword');
+            } else {
+              return (
+                <AwesomeAlert
+                  // show={showAlert}
+                  showProgress={false}
+                  title="AwesomeAlert"
+                  message="I have a message for you!"
+                  closeOnTouchOutside={true}
+                  closeOnHardwareBackPress={false}
+                  showCancelButton={true}
+                  showConfirmButton={true}
+                  cancelText="No, cancel"
+                  confirmText="Yes, delete it"
+                  confirmButtonColor="#DD6B55"
+                  onCancelPressed={() => {
+                    this.hideAlert();
+                  }}
+                  onConfirmPressed={() => {
+                    this.hideAlert();
+                  }}
+                />
+              );
+            }
           }}>
           <Text style={{color: 'black', fontSize: height * 0.02}}>SEND</Text>
         </TouchableOpacity>
