@@ -103,22 +103,22 @@ const styles = StyleSheet.create({
     borderRadius: height * 0.015,
     alignItems: 'center',
     marginBottom: height * 0.12,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     justifyContent: 'center',
     backgroundColor: '#CBFB5E',
   },
   marginContainer: {
     flex: 2,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     flexDirection: 'row',
     alignItems: 'center',
   },
   marginText: {
     flex: 7,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
   },
 });
 

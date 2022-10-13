@@ -93,7 +93,7 @@ const SignIn = ({navigation}) => {
             }}
             style={{
               alignItems: 'flex-end',
-              marginRight: width * 0.1,
+              marginRight: width * 0.075,
               marginTop: height * 0.045,
               marginLeft: width * 0.55,
             }}>
@@ -116,7 +116,7 @@ const SignIn = ({navigation}) => {
                 marginRight: width * 0.4,
               }}
               onPress={event => {
-                navigation.goBack(1);
+                navigation.navigate('GetStarted');
               }}>
               <Text style={{color: 'white', fontSize: height * 0.02}}>
                 GO BACK
@@ -128,8 +128,8 @@ const SignIn = ({navigation}) => {
       <View
         style={{
           flex: 0.75 / 3,
-          marginLeft: width * 0.1,
-          marginRight: width * 0.1,
+          marginLeft: width * 0.075,
+          marginRight: width * 0.075,
         }}>
         <View style={styles.connectViewSpace}>
           <View style={styles.line} />
@@ -201,22 +201,22 @@ const styles = StyleSheet.create({
     borderRadius: height * 0.015,
     height: height * 0.06,
     alignItems: 'center',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     justifyContent: 'center',
     backgroundColor: '#CBFB5E',
   },
   signInText: {
     flex: 1,
     marginTop: height * 0.2,
-    marginLeft: width * 0.1,
+    marginLeft: width * 0.075,
     color: 'white',
     fontSize: height * 0.045,
   },
   emailContainer: {
     flexDirection: 'row',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     height: height * 0.05,
     alignItems: 'center',
     borderBottomColor: '#9f9f9f',
@@ -224,8 +224,8 @@ const styles = StyleSheet.create({
   },
   passwordContainer: {
     flexDirection: 'row',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     marginTop: height * 0.04,
     height: height * 0.05,
     alignItems: 'center',

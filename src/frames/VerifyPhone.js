@@ -48,7 +48,7 @@ const VerifyPhone = ({navigation}) => {
             fontSize={height * 0.02}
             placeholder="Phone"
             keyboardType="number-pad"
-            maxLength={4}
+            maxLength={20}
             type="number"
             pattern="[0-9]*"
             inputMode="numeric"
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
   },
   parent: {
     flex: 1,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
   },
   iconImage: {
     height: '100%',

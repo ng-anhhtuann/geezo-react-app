@@ -109,7 +109,7 @@ const SignUp = ({navigation}) => {
               onPress={event => {
                 /*Logic to add: check if email is true-form ( navigate to VerifyPhone) then return warning 
                 bottom*/
-                navigation.navigate('VerifyPhone');
+                navigation.navigate('ToVerify');
               }}>
               <Text style={{color: 'black', fontSize: height * 0.02}}>
                 SIGN UP
@@ -124,7 +124,7 @@ const SignUp = ({navigation}) => {
                 marginRight: width * 0.4,
               }}
               onPress={event => {
-                navigation.goBack(1);
+                navigation.navigate('SignIn');
               }}>
               <Text style={{color: 'white', fontSize: height * 0.02}}>
                 GO BACK
@@ -146,22 +146,22 @@ const styles = StyleSheet.create({
     borderRadius: height * 0.015,
     height: height * 0.06,
     alignItems: 'center',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     justifyContent: 'center',
     backgroundColor: '#CBFB5E',
   },
   signInText: {
     flex: 1,
     marginTop: height * 0.2,
-    marginLeft: width * 0.1,
+    marginLeft: width * 0.075,
     color: 'white',
     fontSize: height * 0.045,
   },
   emailContainer: {
     flexDirection: 'row',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     marginTop: height * 0.04,
     marginBottom: height * 0.04,
     height: height * 0.05,
@@ -171,8 +171,8 @@ const styles = StyleSheet.create({
   },
   propContainer: {
     flexDirection: 'row',
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: width * 0.075,
+    marginRight: width * 0.075,
     height: height * 0.05,
     alignItems: 'center',
     borderBottomColor: '#9f9f9f',
